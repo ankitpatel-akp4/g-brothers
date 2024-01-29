@@ -1,8 +1,11 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Blogs = () => {
   return (
-    <div>Blogs</div>
+    <div>
+      <Link href={"/blogs/create"}>create a blog</Link>
+    </div>
   )
 }
 

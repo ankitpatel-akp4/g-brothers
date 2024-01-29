@@ -9,6 +9,7 @@ import { ThemeToggle } from "../theme/themeTogggle";
 import { IoCall } from "react-icons/io5";
 import { IoMail } from "react-icons/io5";
 import UserButton from "../auth/userButton";
+
 export const Navbar = () => {
     const [touggle, setTouggle] = useState<boolean>(false)
     const currentRoute = usePathname();
@@ -20,8 +21,11 @@ export const Navbar = () => {
             font-semibold text-secondary-foreground bg-secondary items-center
             ">
                 <div className="flex gap-2 item-center">
-                    <div>                    
-                        <img src={"/img/logo-full-black.svg"}  width={200} height={100} className="px-2" alt="logo"/>
+                    <div>
+                        <Link href={"/"}>                    
+                            <img src={"/img/logo-full-white.svg"}  width={200} height={100} className="px-2 hidden dark:block" alt="logo"/>
+                            <img src={"/img/logo-full-black.svg"}  width={200} height={100} className="px-2 dark:hidden" alt="logo"/>
+                        </Link>
                     </div>
 
                 </div>
@@ -45,7 +49,6 @@ export const Navbar = () => {
                     <ThemeToggle/>
                     <UserButton />
                 </div>
-                
             </div>
 
         </nav>

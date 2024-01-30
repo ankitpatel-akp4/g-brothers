@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from '@/auth'
 import './globals.css'
+import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from '@/components/commons/navbar'
 import Footer from '@/components/commons/footer'
-import NextAuthProvider from '@/context/nextAuthProvider'
 import { ThemeProvider } from '@/components/theme/themeProvider'
-import { ToastContainer } from 'react-toastify'
-import "react-toastify/dist/ReactToastify.css";
-import { ToastWrapper } from '@/components/commons/toastWrapper'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -29,23 +29,25 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth();
+
   return (
-    <html lang="en" >
-      <body className={inter.className+'bg-background text-foreground'} suppressHydrationWarning={true}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextAuthProvider >
-            <Navbar />
-            {children}
-            <Footer />
-            <ToastWrapper/>
-          </NextAuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <html lang="en">
+        <body className={inter.className}>
+        <SessionProvider session={session}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <Navbar />
+              <Toaster />
+              {children}
+              <Footer />
+          </ThemeProvider>
+        </SessionProvider>
+        </body>
+      </html>
   )
 }

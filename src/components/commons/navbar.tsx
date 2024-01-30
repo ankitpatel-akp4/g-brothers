@@ -5,10 +5,11 @@ import { useState } from "react"
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { usePathname } from 'next/navigation';
-import { ThemeToggle } from "../theme/themeTogggle";
+import { ThemeToggle } from "@/components/theme/themeTogggle";
 import { IoCall } from "react-icons/io5";
 import { IoMail } from "react-icons/io5";
-import UserButton from "../auth/userButton";
+import { UserButton } from "@/components/auth/user-button";
+import Image from "next/image";
 
 export const Navbar = () => {
     const [touggle, setTouggle] = useState<boolean>(false)
@@ -23,8 +24,8 @@ export const Navbar = () => {
                 <div className="flex gap-2 item-center">
                     <div>
                         <Link href={"/"}>                    
-                            <img src={"/img/logo-full-white.svg"}  width={200} height={100} className="px-2 hidden dark:block" alt="logo"/>
-                            <img src={"/img/logo-full-black.svg"}  width={200} height={100} className="px-2 dark:hidden" alt="logo"/>
+                            <Image src={"/img/logo-full-white.svg"}  width={200} height={100} className="px-2 hidden dark:block" alt="logo"/>
+                            <Image src={"/img/logo-full-black.svg"}  width={200} height={100} className="px-2 dark:hidden" alt="logo"/>
                         </Link>
                     </div>
 

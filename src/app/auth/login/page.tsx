@@ -1,13 +1,9 @@
-import SignInSignUp from "@/components/auth/loginForm";
+import { LoginForm } from "@/components/auth/login-form";
 
-export default function SignInPage() {
-    
-return (
-    <>
-        <div>
-            <SignInSignUp />   
-        </div>   
-    </>
-    )
-  }
-  
+const LoginPage = () => {
+  return ( 
+    <LoginForm />
+  );
+}
+ 
+export default LoginPage;
